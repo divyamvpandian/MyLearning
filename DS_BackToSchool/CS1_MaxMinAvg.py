@@ -45,28 +45,36 @@ for i in range(1,k+1):
     print(str(i) + "th largest element is ",inp[s-i])
 
 ## traverse only half
-inp=[9,2,4,19,6,117]
-max=0
+inp=[9,2,41,19,117,6,5,45,12,34,555,1,3,90]
+maxvalue=0
 end = len(inp)-1
 mid = round(len(inp)/2)
+loops=0
 for x in range(0,mid+1):
-    if inp[x] > max:
-        max = inp[x]
-    if inp[end] > max:
-        max = inp[end]
-    end-=1
-print(max)
+    if x<end:
+        loops+=1
+        if inp[x] > maxvalue:
+            maxvalue = inp[x]
+        if inp[end] > maxvalue:
+            maxvalue = inp[end]
+        end-=1
+print(maxvalue)
+print("Times Loop executed ", loops, " for inp size", len(inp))
 
 ## traverse only 1/3
-inp=[9,2,41,19,117,6]
+inp=[9,2,41,19,117,6,5,45,12,34,555,1,3,90]
 end = len(inp)-1
 mid = round(len(inp)/3)
-x=0
-for loop in range(0,mid):
-    y =x+1
-    z= x+2
-    l = [inp[x],inp[y],inp[z]]
-    maxe = max(l)
-    x+=3
-print(maxe)
-
+loops=0
+largest=0
+currlist=[]
+for x in range(0,len(inp),3):
+    loops+=1
+    if x+1 <= len(inp)-1:
+        y =x+1
+    if x+2 <= len(inp)-1:
+        z= x+2
+    currlist=[inp[x],inp[y],inp[z],largest]
+    largest= max(currlist)
+print(largest)
+print("Times Loop executed ", loops, " for inp size", len(inp))
